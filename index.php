@@ -7,5 +7,5 @@ $total=new db('total');
 
 ?>
 <pre>
-<?php print_r($total->find(1));?>
+<?php print_r($total->del(['total'=>40]));?>
 </pre>
