@@ -38,7 +38,7 @@
                 </div>
             </div>
 			<?php
-
+                
 				$do=(!empty($_GET['do']))?$_GET['do']:'main';
 				$file='front/'.$do.".php";
 				if(file_exists($file)){
