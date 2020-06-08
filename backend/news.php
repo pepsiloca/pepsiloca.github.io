@@ -11,8 +11,9 @@
 
                                 </tr>
                                 <?php
-                                    $news=new DB('news');
-                                    $rows=$news->all();
+                                    $table="news";
+                                    $db=new DB('news');
+                                    $rows=$db->all();
                                     foreach($rows as $row){
                                         $isChk=($row['sh']==1)?'checked':'';
                                 ?>
@@ -33,9 +34,9 @@
                             <tbody>
                                 <tr>
                                     <td width="200px"><input type="button"
-                                            onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/news.php&#39;)"
+                                            onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/news.php?table=<?=$table;?>&#39;)"
                                             value="新增最新消息資料"></td>
-                                            <input type="hidden" name="table" value='news'>
+                                            <input type="hidden" name="table" value='<?=$table;?>'>
                                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置">
                                     </td>
                                 </tr>
