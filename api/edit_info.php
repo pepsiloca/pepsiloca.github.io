@@ -6,10 +6,8 @@ $table=$_POST['table'];
  
  if(isset($_POST['total'])){
      $row['total']=$_POST['total'];
-     
     }else{
-        $row['bottom']=$_POST['bottom'];
-
+     $row['bottom']=$_POST['bottom'];
  }
 $db->save($row);
 
