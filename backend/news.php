@@ -11,7 +11,7 @@
 
                                 </tr>
                                 <?php
-                                    $table="news";
+                                    $table=$do;
                                     $db=new DB('news');
                                     $rows=$db->all();
                                     foreach($rows as $row){

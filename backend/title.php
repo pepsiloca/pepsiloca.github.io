@@ -11,7 +11,7 @@
                                     <td></td>
                                 </tr>
                                 <?php
-                                    $table="title";
+                                    $table=$do;
                                     $db=new DB($table);
                                     $rows=$db->all();
                                     foreach($rows as $row){

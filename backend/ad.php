@@ -11,7 +11,7 @@
 
                                 </tr>
                                 <?php
-                                    $table='ad';
+                                    $table=$do;
                                     $db=new DB($table);
                                     $rows=$db->all();
                                     foreach($rows as $row){
