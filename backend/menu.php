@@ -14,7 +14,7 @@
                                 <?php
                                     $table=$do;
                                     $db=new DB($table);
-                                    $rows=$db->all();
+                                    $rows=$db->all(['parent'=>0]);
                                     foreach($rows as $row){
                                         $isCheck=($row['sh']==1)?"checked":"";
                                 ?>
