@@ -22,7 +22,7 @@
                                     
                                     <td><input type="text" name="name[]" value="<?=$row['name'];?>" style='width:90%'> </td>
                                     <td><input type="text" name="href[]" value="<?=$row['href'];?>" style='width:90%'> </td>
-                                    <td></td>
+                                    <td><?=$db->count(['parent'=>$row['id']]) ;?></td>
                                     <td><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=$isCheck;?>></td>
                                     <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
                                     <td><input type="button" value="編輯次選單" onclick="op('#cover','#cvr','modal/submenu.php?id=<?=$row['id'];?>&table=<?=$table;?>')"></td>
