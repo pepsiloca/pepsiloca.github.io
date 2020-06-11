@@ -3,7 +3,7 @@ $(document).ready(function(e) {
     $(".mainmu").mouseover(
 		function()
 		{
-			$(this).children(".mw").stop().show()
+			$(this).children(".mw").show()
 		}
 	)
 	$(".mainmu").mouseout(
@@ -13,10 +13,15 @@ $(document).ready(function(e) {
 		}
 	)
 });
+
+
 function lo(x)
 {
 	location.replace(x)
 }
+
+
+
 function op(x,y,url)
 {
 	$(x).fadeIn()
@@ -25,6 +30,9 @@ function op(x,y,url)
 	if(y&&url)
 	$(y).load(url)
 }
+
+
+
 function cl(x)
 {
 	$(x).fadeOut();
