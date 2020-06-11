@@ -38,7 +38,7 @@
                     <span class="t botli">主選單區</span>
                     <?php
                         $menu=new DB("menu");
-                        $mains=$menu->all(['parent'=>0]);
+                        $mains=$menu->all(['parent'=>0,'sh'=>1]);
                         foreach($mains as $main){
                             echo "<div class='mainmu'>";
                                 echo "<a href='".$main['href']."'>";
@@ -102,18 +102,39 @@
                     onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
+                    <div style="text-align:center;margin:10px" onclick="pp(1)"><img src="icon/up.jpg" alt=""></div>
+                    <?php
+                        $image=new DB("image");
+
+                        $ims=$image->all(['sh'=>1]);
+                        foreach($ims as $key => $im){
+                            echo "<div style='text-align:center;margin:3px' id='ssaa$key' class='im'>";
+                            echo "<img src='img/".$im['img']."' style='width:150px;height:103px;border:3px solid orange'>";
+                            echo "</div>";
+                        }
+
+
+                    ?>
+
+
+
+                    <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
+
+                    
                     <script>
-                    var nowpage = 0,
-                        num = 0;
+                    var nowpage = 0, //現在的頁數
+                        num = <?=$image->count(['sh'=>1]);?>;  //圖片的數量
+
 
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
-                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                         if (x == 2 && nowpage + 1  <= num - 3) {
                             nowpage++;
                         }
+
                         $(".im").hide()
                         for (s = 0; s <= 2; s++) {
                             t = s * 1 + nowpage * 1;
