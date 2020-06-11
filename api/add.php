@@ -11,12 +11,23 @@ if(!empty($_FILES['img']['tmp_name'])){
     $data['img']=$filename;
 }
 
-$data['text']=$_POST['text'];
-if($table=='title'){
-    $data['sh']=0;
-}else{
-    $data['sh']=1;
+switch($table){
+    case "title":
+        $data['text']=$_POST['text'];
+        $data['sh']=0;
+    break;
+    case "admin":
+        $data["acc"]=$_POST['acc'];
+        $data['pw']=$_POST['pw'];
+    break;
+    case "menu":
+    break;
+    default:
+        $data['text']=$_POST['text'];
+        $data['sh']=1;
+    break;
 }
+
 
 
 $db->save($data);
