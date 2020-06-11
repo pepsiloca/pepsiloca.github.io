@@ -12,15 +12,18 @@
     </div>
     <script>
     var lin = new Array();
-        lin=[<?php
-        $mvim=new DB("mvim");
-        $mvs=$mvim->all(['sh'=>1]);
-        foreach($mvs as $mv){
-            $tmp[]=sprintf("'img/%s'",$mv['img']);
-        }
-         echo implode(",",$tmp);
-        ;?>];
+        <?php
+            $mvim=new DB("mvim");
+            $mvs=$mvim->all(['sh'=>1]);
+            foreach($mvs as $mv){
+        ?>
+            lin.push('img/<?=$mv['img'];?>')
+        <?php
+            }
+        ?>
+
     var now = 0;
+    ww();
     if (lin.length > 1) {
         setInterval("ww()", 3000);
         now = 1;
@@ -34,7 +37,7 @@
         if (now >= lin.length)
             now = 0;
     }
-    ww();
+
     </script>    
     <div
         style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
