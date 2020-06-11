@@ -219,7 +219,7 @@ class DB{
     |:----:|:------:|:---:|:-------:|:---:|:--------:|
     |id    |int(5)  |yes  |         |yes  | 流水號    |
     |href  |text    |     |         |     | 連結      |
-    |text  |text    |     |         |     | 文字      |
+    |name  |text    |     |         |     | 文字      |
     |parent|int(5)  |     |         |     | 主選單id  |
     |sh    |int(1)  |     |  1      |     | 顯示      |
 
@@ -234,18 +234,17 @@ class DB{
 1. 先整理後台的進站總人數管理功能的頁面，調整HTML的部份符合題意要求的單欄資料內容
 2. 確認可從資料表 `total` 中讀取到訪客計數資料
 3. 建立 `./api/total.php` 並將資料更新的語法寫入
-4. 建立 `session` 變數來紀錄進站人數，並在後台資料變更時，同時更新 `session`
-5. 在 `base.php` 中寫入判斷訪客是否是首次進站，如為首次進站則建立 `session` 並更新資料表中的進站人數。
-6. 要注意的是原本的版型檔案中使用 `iframe` 的方式來傳遞表單資料，因此 `<form>` 標籤中會有 `target="back"` 的設定，但我們不打算使用iframe，因此要拿掉 `index.php`及`admin.php`中的 `<iframe>`，並將原本的 `<form>` 標籤內容略做修改：
+4. 在 `base.php` 中寫入判斷訪客是否是首次進站，如為首次進站則建立 `session` 並更新資料表中的進站人數。
+5. 要注意的是原本的版型檔案中使用 `iframe` 的方式來傳遞表單資料，因此 `<form>` 標籤中會有 `target="back"` 的設定，但我們不打算使用iframe，因此要拿掉 `index.php`及`admin.php`中的 `<iframe>`，並將原本的 `<form>` 標籤內容略做修改：
 
 ```html
 form method="post" target="back" action="?do=tii"
   改成
-form method="post" action="./api/total.php"
+form method="post" action="./api/edit_info.php"
 ```
-7. 將 `$_SESSION['total']` 套用在 `index.php`及`admin.php`的進站總人數位置，或是直接從資料表讀取資料來顯示也可以
-8. 完成進站人數的統計後，可以按照一樣的流程來製作頁尾版權文字，不過頁尾版權文字可以省略 `session` 的使用，直接從資料表中取得資料即可
-9. 完成頁尾版權的後台功能後，在 `footer.php` 中加入讀取頁尾版權資料的程式碼，如此一來 `index.php`及`admin.php` 就可以同時看到頁尾版權資料的內容
+6. 在 `index.php`及`admin.php`的進站總人數位置，直接從資料表讀取資料來顯示
+7. 完成進站人數的統計後，可以按照一樣的流程來製作頁尾版權文字，直接從資料表中取得資料即可
+8. 完成頁尾版權的後台功能後，在 `index.php`及`admin.php` 中加入讀取頁尾版權資料的程式碼，如此一來就可以看到頁尾版權資料的內容
 
 ---
 
@@ -296,7 +295,6 @@ API的撰寫也會考量是否可以同時適用多個功能。
   * 最新消息管理是使用 `textarea` 而不是 `input` 來顯示內容
   * 動態文字廣告及最新消息的文字欄位大小可以使用行內樣式直接調整即可
   * 校園映像圖片的顯示大小題目有要求，前台150x103，後台100x68，一樣使用行內樣式來設定即可
-  * 動畫圖片中要使用 `<embed src=''></embed>` 才會產生動畫效果
 
 最後，記得檢查一下每個功能中，使用彈出視窗功能時，有沒有帶入對應的值或參數。
 
@@ -349,17 +347,38 @@ API的撰寫也會考量是否可以同時適用多個功能。
 在API的部份，我們透過表單中的name屬性命名(**text vs text2 ; href vs href2**)，區分出那些資料是屬於新增的，而那些資料是屬於改和刪的，這邊是較複雜的地方，需要花點時間理解一下。
 
 * 修改 `./backend/menu.php` 中編輯次選單按鈕連結及參數
-* 在 `./view/` 目錄下建立一個 `sub_menu.php` 的檔案做為編輯次選單的主要畫面
-* 編輯 `./view/sub_menu.php` 以符合參考圖的呈現格式
-* 在 **更多次選單** 上加入 `onclick` 事件呼叫 `moreSub()` 程式來動態產生輸入欄位
+* 在 `./modal/` 目錄下建立一個 `submenu.php` 的檔案做為編輯次選單的主要畫面
+* 編輯 `./modal/submenu.php` 以符合參考圖的呈現格式
+* 在 **更多次選單** 上加入 `onclick` 事件呼叫 `more()` 程式來動態產生輸入欄位
+```html
+
+    <input type="button" value="更多次選單" onclick="more()">
+
+    <script>
+      function more(){
+          let row=`
+              <tr>
+                  <td><input type="text" name="name2[]"></td>
+                  <td><input type="text" name="href2[]"></td>
+                  <td></td>
+              </tr>
+          `
+          $("#sub").append(row)
+      }
+    </script>
+
+```
 * 新增用的欄位名應該要和從資料庫撈出來的不一樣，才能做識別(ex. text vs text2)
-* 新增 `./api/sub_menu.php` 撰寫編輯次選單的功能
+* 新增 `./api/edit_submenu.php` 撰寫編輯次選單的功能
 * 依照POST內容的欄位名稱來決定要執行的是新增或是修改或是兩者同時都有。
-* 這邊我們採用表單送出的行為(submit)，也就是整個頁面會跳去 `./api/sub_menu.php` 處理完再跳回 `admin.php?do=menu`，跳回來時不會再彈出視窗，但是可以看到次選單的數目改變。
+* 這邊我們採用表單送出的行為(submit)，也就是整個頁面會跳去 `./api/edit_submenu.php` 處理完再跳回 `admin.php?do=menu`，跳回來時不會再彈出視窗，但是可以看到次選單的數目改變。
 * 如果希望保留彈出視窗，那麼就要改用AJAX的方式來撰寫程式。
 * 記得要把主選單的**id**一併送出，才知道是誰的次選單，這邊我們使用 `hidden` 欄位來存放主選單id
+```php
+    <input type="hidden" name="parent" value="<?=$_GET['id'];?>">
+```
 * 修改 `./backend/menu.php` 中列表主選單的條件(`["parent"=>0]`)
-* 最後補上次選單數的計算及顯示(使用nums()函式來計算次選單數)
+* 最後補上次選單數的計算及顯示(使用$db->count()函式來計算次選單數)
 
 ---
 
@@ -370,12 +389,50 @@ API的撰寫也會考量是否可以同時適用多個功能。
 
 * 先取得資料表中的總筆數(要注意是否有條件限制，比如全部列出或是只列出顯示設定為1的資料)
 * 設定每個頁面要列出的資料筆數
-* 計算總頁數(無條件進位法)
+* 計算總頁數(無條件進位法ceil()函式)
 * 採用網址參數的方式來取得當前頁，預設為第一頁
 * 計算資料的開始筆數( **(當前頁-1)*每頁筆數** )
 * 下SQL查詢語法( **LIMIT start,amount** )
+```php
+  <?php
+    $news=new DB("news");
+    $total=$news->count(['sh'=>1]);
+    $num=5;
+    $pages=ceil($total/$num);
+    $now=(!empty($_GET['p']))?$_GET['p']:1;
+    $start=($now-1)*$num;
+    $ns=$news->all(['sh'=>1]," limit $start,$num");
+  ?>
+```
 * 列出資料
-
+```php
+  <?php
+      foreach($ns as $n){
+  ?>
+    <li><?=mb_substr($n['text'],0,20,'utf8');?>...
+        <div class='all' style="display:none"><?=$n['text'];?></div>
+    </li> 
+  <?php
+    }
+  ?>
+```
+* 製作下方分頁按鈕
+```php
+  <div style="text-align:center;">
+    <?php if(($now-1)>0){ ?>
+      <a class="bl" style="font-size:30px;" href="?do=new($now-1);?>">&lt;&nbsp;</a>
+    <?php }  ?>
+    <?php
+      for($i=1;$i<=$pages;$i++){
+          $fontsize=($i==$now)?'30px':'24px';
+    ?>
+     <a class="bl" style="font-size:<?=$fontsize;?>;" href="?do=news&p=<?=$i;?>"><?=$i;?></a>
+    <?php } ?>
+    <?php if(($now+1)<=$pages){ ?>
+      <a class="bl" style="font-size:30px;" href="?do=news&p=<+1);?>">&nbsp;&gt;</a>
+    <?php } ?>
+  </div>
+```
 完成 `image`及`news` 的分頁製作後，後台的主要功能也完成90%了，剩下的是一些小調整，我們會放在前台製作時再一併處理。
 
 ---
