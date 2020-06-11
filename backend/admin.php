@@ -14,17 +14,17 @@
                                     $db=new DB($table);
                                     $rows=$db->all();
                                     foreach($rows as $row){
-                                       
+                                    
                                 ?>
                                 <tr class='cent'>
                                     
                                     <td><input type="text" name="acc[]" value="<?=$row['acc'];?>" style='width:90%'> </td>
                                     <td><input type="password" name="pw[]" value="<?=$row['pw'];?>" style='width:90%'> </td>
                                     <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
-
                                     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                                 </tr>
                                 <?php
+                                
                                     }
                                 ?>
                             </tbody>
