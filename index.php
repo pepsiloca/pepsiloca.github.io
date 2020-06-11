@@ -112,20 +112,12 @@
                             echo "<img src='img/".$im['img']."' style='width:150px;height:103px;border:3px solid orange'>";
                             echo "</div>";
                         }
-
-
                     ?>
 
-
-
-                    <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
-
-                    
+                   <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
                     <script>
                     var nowpage = 0, //現在的頁數
                         num = <?=$image->count(['sh'=>1]);?>;  //圖片的數量
-
-
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
