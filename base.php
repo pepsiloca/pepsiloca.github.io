@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //建立一個DB的類別
 
 class DB{

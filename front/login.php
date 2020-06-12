@@ -7,6 +7,7 @@ if(!empty($_POST['acc']) && !empty($_POST['pw'])){
     $chk=$admin->count(['acc'=>$acc,'pw'=>$pw]);
     if($chk>0){
         to("admin.php");
+        $_SESSION['login']=$acc;
     }else{
         echo "<script>alert('帳號或密碼錯誤')</script>";
     }
