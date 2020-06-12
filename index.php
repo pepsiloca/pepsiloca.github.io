@@ -7,13 +7,11 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>卓越科技大學校園資訊系統</title>
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="./js/js.js"></script>
 </head>
-
 <body>
     <div id="cover" style="display:none; ">
         <div id="coverr">
@@ -24,9 +22,9 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-    <?php $title=new DB('title') ;
+        <?php $title=new DB('title') ;
             $ti=$title->find(['sh'=>1]);
-    ?>
+        ?>
         <a title="<?=$ti['text'];?>" href="index.php">
             <div class="ti" style="background:url(&#39;img/<?=$ti['img'];?>&#39;); background-size:cover;"></div>
             <!--標題-->
@@ -67,7 +65,7 @@
                     ?></span>
                 </div>
             </div>
-			<?php
+            <?php
                 
 				$do=(!empty($_GET['do']))?$_GET['do']:'main';
 				$file='front/'.$do.".php";
@@ -81,27 +79,19 @@
 
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
-                <?php
-                
-                if(empty($_SESSION['login'])){
-                ?>
+                <?php  if(empty($_SESSION['login'])){ ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
                     onclick="lo(&#39;?do=login&#39;)">管理登入</button>
-                <?php
-                }else{
-                ?>
+                <?php   }else{   ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
                     onclick="lo(&#39;admin.php&#39;)">返回管理</button>
-                <?php
-                }
-                ?>
+                <?php }  ?>
 
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
                     <div style="text-align:center;margin:10px" onclick="pp(1)"><img src="icon/up.jpg" alt=""></div>
                     <?php
                         $image=new DB("image");
-
                         $ims=$image->all(['sh'=>1]);
                         foreach($ims as $key => $im){
                             echo "<div style='text-align:center;margin:3px' id='ssaa$key' class='im'>";
@@ -110,16 +100,16 @@
                         }
                     ?>
 
-                   <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
+                    <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
                     <script>
                     var nowpage = 0, //現在的頁數
-                        num = <?=$image->count(['sh'=>1]);?>;  //圖片的數量
+                        num = <?=$image->count(['sh' => 1]); ?>; //圖片的數量
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
-                         if (x == 2 && nowpage + 1  <= num - 3) {
+                        if (x == 2 && nowpage + 1 <= num - 3) {
                             nowpage++;
                         }
 
@@ -146,7 +136,5 @@
             </span>
         </div>
     </div>
-
 </body>
-
 </html>

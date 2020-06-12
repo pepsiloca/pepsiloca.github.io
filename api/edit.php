@@ -15,7 +15,6 @@ $db=new DB($table);
                if(!empty($_POST['text'])){
                   $row['text']=$_POST['text'][$key];
                }
-
                $row['sh']=($_POST['sh']==$id)?1:0;
             break;
             case "admin":
@@ -31,10 +30,8 @@ $db=new DB($table);
                if(!empty($_POST['text'])){
                   $row['text']=$_POST['text'][$key];
                }
-
                $row['sh']=(!empty($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
             break;
-
          }
 
          $db->save($row);

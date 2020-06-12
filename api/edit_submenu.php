@@ -1,6 +1,5 @@
 <?php
 
-
 include_once "../base.php";
 
 $db=new DB("menu"); //$_GET['table']

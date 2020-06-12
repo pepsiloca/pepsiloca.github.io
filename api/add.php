@@ -31,10 +31,7 @@ switch($table){
     break;
 }
 
-
-
 $db->save($data);
 
 to("../admin.php?do=$table");
-
 ?>

@@ -17,9 +17,7 @@
             foreach($mvs as $mv){
         ?>
             lin.push('img/<?=$mv['img'];?>')
-        <?php
-            }
-        ?>
+        <?php }  ?>
 
     var now = 0;
     ww();
@@ -47,12 +45,10 @@
                 if($chk>=5){
                     echo "<a href='index.php?do=news' style='float:right'>More...</a>";
                 }
-
             ?>
         </span>
         <ul class="ssaa" style="list-style-type:decimal;">
             <?php
-                
                 $ns=$news->all(['sh'=>1]," limit 5");
                 foreach($ns as $n){
             ?>

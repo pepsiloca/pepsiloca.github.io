@@ -5,7 +5,7 @@ if(empty($_SESSION['login'])){
 ?>
     <script>
         alert('非法登入，請重新登入');
-        location.href='index.php?do=login'
+        location.href = 'index.php?do=login'
     </script>
 <?php
 }
@@ -35,7 +35,7 @@ if(empty($_SESSION['login'])){
     </div>
 
     <div id="main">
-    <?php $title=new DB('title') ;
+        <?php $title=new DB('title') ;
             $ti=$title->find(['sh'=>1]);
     ?>
         <a title="<?=$ti['text'];?>" href="index.php">
@@ -47,52 +47,42 @@ if(empty($_SESSION['login'])){
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <span class="t botli">後台管理選單</span>
-                    <a style="color:#000; font-size:13px; text-decoration:none;"
-                        href="?do=title">
-                        <div class="mainmu">
-                            網站標題管理 </div>
+                    <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
+                        <div class="mainmu">網站標題管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
-                        <div class="mainmu">
-                            動態文字廣告管理 </div>
+                        <div class="mainmu">動態文字廣告管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
-                        <div class="mainmu">
-                            動畫圖片管理 </div>
+                        <div class="mainmu">動畫圖片管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=image">
-                        <div class="mainmu">
-                            校園映象資料管理 </div>
+                        <div class="mainmu">校園映象資料管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
-                        <div class="mainmu">
-                            進站總人數管理 </div>
+                        <div class="mainmu">進站總人數管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=bottom">
-                        <div class="mainmu">
-                            頁尾版權資料管理 </div>
+                        <div class="mainmu">頁尾版權資料管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=news">
-                        <div class="mainmu">
-                            最新消息資料管理 </div>
+                        <div class="mainmu">最新消息資料管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin">
-                        <div class="mainmu">
-                            管理者帳號管理 </div>
+                        <div class="mainmu">管理者帳號管理 </div>
                     </a>
                     <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=menu">
-                        <div class="mainmu">
-                            選單管理 </div>
+                        <div class="mainmu">選單管理 </div>
                     </a>
-
-
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :<?php
+                    <span class="t">進站總人數 :
+                    <?php
                         $total=new DB("total");
                         $tt=$total->find(1);
                         echo $tt['total'];
-                    ?></span>
+                    ?>
+                    </span>
                 </div>
             </div>
             <div class="di"
@@ -110,15 +100,13 @@ if(empty($_SESSION['login'])){
                     </tbody>
                 </table>
                 <?php
-
-				$do=(!empty($_GET['do']))?$_GET['do']:'title';
-				$file='backend/'.$do.".php";
-				if(file_exists($file)){
-					include $file;
-				}else{
-					include 'backend/title.php';
-				}
-
+				    $do=(!empty($_GET['do']))?$_GET['do']:'title';
+				    $file='backend/'.$do.".php";
+				    if(file_exists($file)){
+				    	include $file;
+				    }else{
+				    	include 'backend/title.php';
+				    }
 				?>
             </div>
             <div id="alt"
@@ -144,14 +132,12 @@ if(empty($_SESSION['login'])){
         <div
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;">
-            <?php
+                <?php
                 $bottom=new DB('bottom');
                 $bt=$bottom->find(1);
                 echo $bt['bottom'];
             ?></span>
         </div>
     </div>
-
 </body>
-
 </html>

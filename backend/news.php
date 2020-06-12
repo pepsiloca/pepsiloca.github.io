@@ -5,10 +5,8 @@
             <tbody>
                 <tr class="yel">
                     <td width="68%">最新消息資料</td>
-
                     <td width="7%">顯示</td>
                     <td width="7%">刪除</td>
-
                 </tr>
                 <?php
                     $table=$do;
@@ -21,14 +19,13 @@
                     $rows=$db->all([]," limit $start , $num");
                     foreach($rows as $row){
                         $isChk=($row['sh']==1)?'checked':'';
-                                ?>
+                ?>
                 <tr class='cent'>
-
-                    <td width="68%"><textarea name="text[]" style='width:90%;height:60px'><?=$row['text'];?></textarea>
+                    <td width="68%">
+                        <textarea name="text[]" style='width:90%;height:60px'><?=$row['text'];?></textarea>
                     </td>
                     <td width="7%"><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=$isChk;?>> </td>
                     <td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
-
                     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                 </tr>
                 <?php
@@ -38,28 +35,21 @@
         </table>
         <div style="text-align:center;">
             <?php
-                    if(($now-1)>0){
-                    ?>
+               if(($now-1)>0){
+            ?>
             <a class="bl" style="font-size:30px;" href="?do=<?=$table;?>&p=<?=($now-1);?>">&lt;&nbsp;</a>
+            <?php   }  ?>
             <?php
-                    }
-                    ?>
-
-            <?php
-                    for($i=1;$i<=$pages;$i++){
-                        $fontsize=($i==$now)?'30px':'24px';
-                    ?>
+                for($i=1;$i<=$pages;$i++){
+                    $fontsize=($i==$now)?'30px':'24px';
+            ?>
             <a class="bl" style="font-size:<?=$fontsize;?>;" href="?do=<?=$table;?>&p=<?=$i;?>"><?=$i;?></a>
+            <?php   }   ?>
             <?php
-                    }
-                    ?>
-            <?php
-                    if(($now+1)<=$pages){
-                    ?>
+                if(($now+1)<=$pages){
+            ?>
             <a class="bl" style="font-size:30px;" href="?do=<?=$table;?>&p=<?=($now+1);?>">&nbsp;&gt;</a>
-            <?php
-                    }
-                    ?>
+            <?php   }   ?>
         </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
@@ -73,6 +63,5 @@
                 </tr>
             </tbody>
         </table>
-
     </form>
 </div>
