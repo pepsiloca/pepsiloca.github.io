@@ -14,11 +14,11 @@
                 $start=($now-1)*$num;
                 $ns=$news->all(['sh'=>1]," limit $start,$num");
                 ?>
-                <ol class="ssaa" start="<?=$start+1;?>">
+            <ol class="ssaa" start="<?=$start+1;?>">
             <?php
                 foreach($ns as $n){
             ?>
-            <li><?=mb_substr($n['text'],0,20,'utf8');?>...
+            <li class="sswww"><?=mb_substr($n['text'],0,20,'utf8');?>...
                 <div class='all' style="display:none"><?=$n['text'];?></div>
             </li> 
             <?php
@@ -57,7 +57,7 @@
             <script>
             $(".sswww").hover(
                 function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
+                    $("#alt").html("<pre>" + $(this).children(".all").html() + "</pre>").css({
                         "top": $(this).offset().top - 50
                     })
                     $("#alt").show()
