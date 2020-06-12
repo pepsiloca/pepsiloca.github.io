@@ -12,11 +12,16 @@
                                 <?php
                                     $table=$do;
                                     $db=new DB($table);
-                                    $rows=$db->all();
+                                    $total=$db->count();
+                                    $num=3;
+                                    $pages=ceil($total/$num);
+                                    $now=(!empty($_GET['p']))?$_GET['p']:1;
+                                    $start=($now-1)*$num;                                    
+                                    $rows=$db->all([]," limit $start , $num");
                                     foreach($rows as $row){
                                         $isChk=($row['sh']==1)?'checked':'';
                                 ?>
-                                <tr>
+                                <tr class="cent">
                                     <td width="68%"><img src='img/<?=$row['img'];?>' style="width:100px;height:68px"></td>
                                     <td width="7%"><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=$isChk;?>> </td>
                                     <td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
@@ -28,6 +33,31 @@
                                 ?>
                             </tbody>
                         </table>
+                        <div style="text-align:center;">
+                    <?php
+                    if(($now-1)>0){
+                    ?>
+                        <a class="bl" style="font-size:30px;" href="?do=<?=$table;?>&p=<?=($now-1);?>">&lt;&nbsp;</a>
+                    <?php
+                    }
+                    ?>
+
+                    <?php
+                    for($i=1;$i<=$pages;$i++){
+                        $fontsize=($i==$now)?'30px':'24px';
+                    ?>
+                    <a class="bl" style="font-size:<?=$fontsize;?>;" href="?do=<?=$table;?>&p=<?=$i;?>"><?=$i;?></a>
+                    <?php
+                    }
+                    ?>
+                                        <?php
+                    if(($now+1)<=$pages){
+                    ?>
+                    <a class="bl" style="font-size:30px;" href="?do=<?=$table;?>&p=<?=($now+1);?>">&nbsp;&gt;</a>
+                    <?php
+                    }
+                    ?>
+                </div>                        
                         <table style="margin-top:40px; width:70%;">
                             <tbody>
                                 <tr>
