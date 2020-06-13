@@ -11,11 +11,15 @@
                 <?php
                     $table=$do;
                     $db=new DB('news');
+
+                    //產生分頁所需的各個變數及相應的數值
                     $total=$db->count();
                     $num=4;
                     $pages=ceil($total/$num);
                     $now=(!empty($_GET['p']))?$_GET['p']:1;
-                    $start=($now-1)*$num;                                    
+                    $start=($now-1)*$num;
+                    
+                    //撈取各分頁所需要顯示的資料
                     $rows=$db->all([]," limit $start , $num");
                     foreach($rows as $row){
                         $isChk=($row['sh']==1)?'checked':'';
@@ -35,6 +39,8 @@
         </table>
         <div style="text-align:center;">
             <?php
+
+               //利用前面計算出來的各項變數來產生各項分頁所需的連結
                if(($now-1)>0){
             ?>
             <a class="bl" style="font-size:30px;" href="?do=<?=$table;?>&p=<?=($now-1);?>">&lt;&nbsp;</a>

@@ -1,5 +1,6 @@
 <div class="di"
     style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
+    <!--因為跑馬燈功能包含了三個頁面，因此我們選擇將跑馬燈功能切出去成為一個獨立的檔案-->
     <?php include "maquree.php";?>
     <div style="height:32px; display:block;"></div>
     <!--正中央-->
@@ -12,6 +13,7 @@
     <script>
     var lin = new Array();
         <?php
+            //撈出需要顯示的動畫圖片，再以js的array.push功能將路徑字串加入到陣列中
             $mvim=new DB("mvim");
             $mvs=$mvim->all(['sh'=>1]);
             foreach($mvs as $mv){
@@ -20,6 +22,7 @@
         <?php }  ?>
 
     var now = 0;
+    //在輪播程式執行前先單獨執行一次ww()程式，把第一張動畫先放到畫面中
     ww();
     if (lin.length > 1) {
         setInterval("ww()", 3000);
@@ -41,6 +44,8 @@
         <span class="t botli">最新消息區
             <?php
                 $news=new DB("news");
+
+                //先判斷需要顯示的最消息是否大於5筆
                 $chk=$news->count(['sh'=>1]);
                 if($chk>=5){
                     echo "<a href='index.php?do=news' style='float:right'>More...</a>";
@@ -49,10 +54,12 @@
         </span>
         <ul class="ssaa" style="list-style-type:decimal;">
             <?php
+                //撈出最多五筆最新消息並顯示前20個字在畫面上
                 $ns=$news->all(['sh'=>1]," limit 5");
                 foreach($ns as $n){
             ?>
             <li><?=mb_substr($n['text'],0,20,'utf8');?>...
+                <!--塞一個子元素在最新消息的每一則列表中，再透過素材附的js程式顯示完整內容在彈出視窗中-->
                 <div class='all' style="display:none"><?=$n['text'];?></div>
             </li> 
             <?php

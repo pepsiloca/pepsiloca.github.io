@@ -22,7 +22,9 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <?php $title=new DB('title') ;
+        <?php
+            //載入標題區的資料，分別顯示文字及圖片路徑
+            $title=new DB('title') ;
             $ti=$title->find(['sh'=>1]);
         ?>
         <a title="<?=$ti['text'];?>" href="index.php">
@@ -35,6 +37,7 @@
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
                     <?php
+                        //先載入主選單，並加上相應的html內容
                         $menu=new DB("menu");
                         $mains=$menu->all(['parent'=>0,'sh'=>1]);
                         foreach($mains as $main){
@@ -43,6 +46,7 @@
                                 echo $main['name'];
                                 echo "</a>";
 
+                                //檢查是否有次選單，有的話則撈出次選單並加上相應的html內容
                                 $chksub=$menu->count(['parent'=>$main['id']]);
                                 if($chksub>0){
                                     $subs=$menu->all(['parent'=>$main['id']]);
@@ -54,19 +58,22 @@
                                 }
                             echo "</div>";
                         }
-
                     ?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :<?php
+                    <span class="t">進站總人數 :
+                    <?php
+                        //撈出進站累積總人數並顯示
                         $total=new DB("total");
                         $tt=$total->find(1);
                         echo $tt['total'];
-                    ?></span>
+                    ?>
+                    </span>
                 </div>
             </div>
             <?php
-                
+
+                //根據網址的參數來決定要載入的區塊內容，如果沒有網址參數則預設載入主要的區塊
 				$do=(!empty($_GET['do']))?$_GET['do']:'main';
 				$file='front/'.$do.".php";
 				if(file_exists($file)){
@@ -74,12 +81,13 @@
 				}else{
 					include 'front/main.php';
 				}
-			
 			?>
-
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
-                <?php  if(empty($_SESSION['login'])){ ?>
+                <?php
+                  //依據是否有登入的狀態來決定按鈕要顯示的內容及導向
+                  if(empty($_SESSION['login'])){
+                ?>
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
                     onclick="lo(&#39;?do=login&#39;)">管理登入</button>
                 <?php   }else{   ?>
@@ -91,6 +99,7 @@
                     <span class="t botli">校園映象區</span>
                     <div style="text-align:center;margin:10px" onclick="pp(1)"><img src="icon/up.jpg" alt=""></div>
                     <?php
+                        //撈出校園映像圖並依題意加上相應的動作及html內容
                         $image=new DB("image");
                         $ims=$image->all(['sh'=>1]);
                         foreach($ims as $key => $im){
@@ -103,12 +112,16 @@
                     <div style="text-align:center;margin:10px" onclick="pp(2)"><img src="icon/dn.jpg" alt=""></div>
                     <script>
                     var nowpage = 0, //現在的頁數
+                        
+                        //計算被設定為要顯示的校園映像圖片數量
                         num = <?=$image->count(['sh' => 1]); ?>; //圖片的數量
                     function pp(x) {
                         var s, t;
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
+
+                        //素材的js程式有點小bug，建議略做修改如下
                         if (x == 2 && nowpage + 1 <= num - 3) {
                             nowpage++;
                         }
@@ -129,6 +142,7 @@
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;">
             <?php
+                //撈出頁尾版權的資料並顯示
                 $bottom=new DB('bottom');
                 $bt=$bottom->find(1);
                 echo $bt['bottom'];

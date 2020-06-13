@@ -10,6 +10,8 @@
                     <td></td>
                 </tr>
                 <?php
+
+                    //請參考news.php來讀懂以下的程式碼及分頁功能
                     $table = $do;
                     $db = new DB($table);
                     $total = $db->count();

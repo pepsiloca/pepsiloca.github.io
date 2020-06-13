@@ -1,6 +1,7 @@
 ﻿<?php
 include_once "base.php";
 
+//由登入狀態來判斷使用者能不能讀取此頁面的內容
 if(empty($_SESSION['login'])){
 ?>
     <script>
@@ -35,9 +36,11 @@ if(empty($_SESSION['login'])){
     </div>
 
     <div id="main">
-        <?php $title=new DB('title') ;
+        <?php
+            //取得標題文字的資料並顯示在相應的位置
+            $title=new DB('title') ;
             $ti=$title->find(['sh'=>1]);
-    ?>
+        ?>
         <a title="<?=$ti['text'];?>" href="index.php">
             <div class="ti" style="background:url(&#39;img/<?=$ti['img'];?>&#39;); background-size:cover;"></div>
             <!--標題-->
@@ -78,6 +81,7 @@ if(empty($_SESSION['login'])){
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
                     <?php
+                        //取得進站累積總人數的值並顯示在相應的位置
                         $total=new DB("total");
                         $tt=$total->find(1);
                         echo $tt['total'];
@@ -100,6 +104,7 @@ if(empty($_SESSION['login'])){
                     </tbody>
                 </table>
                 <?php
+                    //依據網址的參數來決定要載入的頁面，如果沒有相應的頁面則預設載入標題圖片管理
 				    $do=(!empty($_GET['do']))?$_GET['do']:'title';
 				    $file='backend/'.$do.".php";
 				    if(file_exists($file)){
@@ -109,34 +114,22 @@ if(empty($_SESSION['login'])){
 				    }
 				?>
             </div>
-            <div id="alt"
-                style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
-            </div>
-            <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
-            </script>
+
+        <!--原始素材的後台頁面檔案中有一段html的內容和前台的更多消息區的內容是一樣，
+            但這段程式在後台不會用到，可以直接刪除-->
+        
         </div>
         <div style="clear:both;"></div>
         <div
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;">
                 <?php
-                $bottom=new DB('bottom');
-                $bt=$bottom->find(1);
-                echo $bt['bottom'];
-            ?></span>
+                //撈出頁尾版權資料並顯示
+                    $bottom=new DB('bottom');
+                    $bt=$bottom->find(1);
+                    echo $bt['bottom'];
+                ?>
+            </span>
         </div>
     </div>
 </body>

@@ -1,4 +1,5 @@
 <?php 
+//請參考add.php的註解，自行讀懂下列程式碼的功能
 include_once '../base.php';
 $table=$_POST['table'];
  $db=new DB($table);

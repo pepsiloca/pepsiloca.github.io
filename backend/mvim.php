@@ -10,6 +10,7 @@
                     <td></td>
                 </tr>
                 <?php
+                //請參考title.php來讀懂以下的程式碼
                     $table = $do;
                     $db = new DB($table);
                     $rows = $db->all();

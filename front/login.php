@@ -1,5 +1,6 @@
 <?php
-
+//因為查題的登入功能比較簡單，所以直接在本頁面處理
+//也可以另外做一支API來專門處理登入功能
 if(!empty($_POST['acc']) && !empty($_POST['pw'])){
     $admin=new DB("admin");
     $acc=$_POST['acc'];

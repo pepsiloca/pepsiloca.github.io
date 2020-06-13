@@ -1,5 +1,7 @@
 <?php
     include_once "../base.php";
+    
+    //根據後台的menu.php中所傳過來的table及id參數來取得主選單所屬的次選單內容
     $db = new DB($_GET['table']);
     $subs = $db->all(["parent" => $_GET['id']]);
 ?>
@@ -34,6 +36,8 @@
     </div>
 </form>
 <script>
+
+//製作一個js函式來產生另一組新增用的表單欄位內容
 function more() {
     let row = `
         <tr>

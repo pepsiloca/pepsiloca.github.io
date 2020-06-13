@@ -6,6 +6,9 @@
     <h4 class='cent'>更多最新消息</h4>
     <hr>
     <?php
+        //參考main.php中的最新消息功能來產生消息列表
+        //參考後台的news.php來製作各個分頁所需的變數
+        //將原本的ul改成ol有序清單，並加入計算消息的編號
         $news = new DB("news");
         $total = $news->count(['sh' => 1]);
         $num = 5;

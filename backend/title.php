@@ -11,6 +11,9 @@
                     <td></td>
                 </tr>
                 <?php
+                    //因為我們一開始就設計admin.php的$do變數和各資料表名稱一樣
+                    //所以在這裏也利用$do變數來當成資料表名加以使用
+                    //能理解變數應用的同學可以省略$table=$do這一行，直接使用$do即可
                     $table = $do;
                     $db = new DB($table);
                     $rows = $db->all();

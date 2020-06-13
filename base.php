@@ -197,7 +197,8 @@ function to($url){
     header("location:".$url);
 }
 
-
+//在base.php裏判斷使用者是否為新的拜訪者，
+//並以session來紀錄此次進站的狀態
 if(empty($_SESSION['visited'])){
     $total=new DB('total');
     $tt=$total->find(1);
