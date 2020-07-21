@@ -199,7 +199,7 @@ hr {
 }
 .web:hover{
   box-shadow:1px 1px 15px rgb(33, 118, 133);
-  border:5px solid rgb(193, 246, 255);
+  /* border:5px solid rgb(193, 246, 255); */
   color:rgb(255, 175, 219);
   font-weight: 600;
 }
@@ -305,12 +305,6 @@ hr {
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
-/* #portfolio i.fa {
-	font-size: 20px;
-	padding: 5px;
-	color: #E87E04;
-} */
-
 
 /*footer*/
 
