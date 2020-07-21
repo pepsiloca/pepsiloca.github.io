@@ -314,6 +314,12 @@ hr {
 
 /*footer*/
 
+.btn{
+	color:white;
+	background-color:rgb(20, 139, 168);
+
+}
+
 footer > .position-fixed {
 	bottom: 5vh;
 	right: 5vh;
