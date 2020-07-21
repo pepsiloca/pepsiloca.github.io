@@ -24,5 +24,7 @@ CSS設計與網站完整度/ 10分
 GitPage上傳/ 10分
 使用個人Github帳號上傳存儲庫並打開Github Page功能（複製連結提供繳交說明）。
 
+連結:https://pepsiloca.github.io/
+
 繳交方式
 完整代碼上傳Github ClassRoom至指定存儲庫，並在說明欄位提供個人GitPage之預覽連結（前項第6點動作）
