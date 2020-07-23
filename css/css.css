@@ -1,183 +1,70 @@
-@charset "utf-8";
-/* CSS Document */
-body
-{
-	padding:0px;
-	margin:0px;
+/* Skills Section */
+#skills {
+	padding: 100px 0;
+	background: #7bc3d1;
 }
-#cover
-{
-	width:100%;
-	height:100%;
-	position:fixed;
-	z-index:5;
-	background:rgba(51,51,51,0.4);
-	top:0px;
-	left:0px;
-	overflow:auto;
-}
-#coverr
-{
-	width:70%;
-	min-width:300px;
-	max-width:800px;
-	height:70%;
-	min-height:300px;
-	position:absolute;
-	z-index:5;
-	background:#ffffff;
-	top:0px;
-	left:0px;
-	right:0px;
-	bottom:0px;
-	margin:auto;
-	overflow:auto;
-}
-#main
-{
-	width:1024px;
-	height:768px;
-	margin:10px auto 10px auto;
-	border:#EE7728 1px solid;
-	position:relative;
-}
-.ti
-{
-	width:100%;
-	height:100px;
-	position:relative;
-	background-size:cover;
-	background-repeat:no-repeat;
-}
-.dbor
-{
-	border:#EE7728 double 3px;
-	margin:1px;
-	padding:2px 10px 2px 10px;
-}
-.t
-{
-	font-weight:800;
-	display:block;
-	text-align:center;
-	padding:10px 1px 10px 1px;
-}
-.botli
-{
-	border-bottom:#333 1px solid;
-}
-.mainmu
-{
-	position:relative;
-	border-radius:10px;
-	background:url(../icon/menu.fw.png) center no-repeat;
-	background-size:cover;
-	line-height:30px;
-	padding:2px 10px 2px 10px;
-	margin:7px 1px 7px 1px;
-	height:30px;
-	text-align:center;
-}
-.mainmu:hover
-{
-	background:url(../icon/menu2.fw.png) center no-repeat;
-	background-size:cover;
-}
-.mainmu2
-{
-	position:relative;
-	border-radius:10px;
-	background:url(../icon/menu3.fw.png)center no-repeat;
-	background-size:100% 100%;
-	line-height:30px;
-	padding:2px 10px 2px 10px;
-	margin:7px 1px 7px 1px;
-	text-align:center;
 
+#skills hr{
+
+	background: rgba(255,255,255,0.3)
 }
-.mainmu2:hover
-{
-	background:url(../icon/menu4.fw.png) center no-repeat;
-	background-size:cover;
-}
-#lf
-{
-	height:540px;
-	width:21%;
-	display:inline-block;
-}
-#menuput
-{
-	width:100%;
-	height:75%;
-	position:relative;
+
+.web{
+	background-color: rgb(255, 255, 255);
+	color: #656c6d;
+	width:80%;
 	padding:5px;
-	display:block;
-	margin: 3px;
+	height: 150px;
+	/* border-radius: 10%; */
+	text-align: center;
+	box-shadow:1px 1px 2px rgb(41, 139, 156);
+
 }
-.di
-{
-	display:inline-block;
-}
-.ad
-{
-	margin:1px;
-	padding:2px 10px 2px 10px;
-}
-.cent
-{
-	text-align:center;
-}
-input,button
-{
-	border:#999 1px solid;
-	border-radius:3px;
-	background:#EFEFEF;
-	padding:5px;
-	margin:3px;
-}
-input:active,button:active
-{
-	background:#E6E6E6;
-}
-input[type=text],input[type=password]
-{
-	width:150px;
-}
-input:focus,button:focus
-{
-	box-shadow:#09C 0px 0px 3px .3px;
-}
-.yel td
-{
-	background:#F3DA49;
-	text-align:center;
-}
-.trce td
-{
-	text-align:center;
-}
-.bl
-{
-	color:#0CF;
-	cursor:pointer;
-	text-decoration:none;
+.web:hover{
+  box-shadow:1px 1px 15px rgb(33, 118, 133);
+  color:rgb(255, 255, 254);
+  background: rgb(82, 82, 82);
+  font-weight: 600;
+  width:100%;
+  transition: all 0.3s;
 }
 
-.mw{
-	width:150px;
-	position: relative;
-	left:140px;
-	z-index:99;
-	display: none;
-	top:-15px;
+.web > h5:hover{
+	color:rgb(33, 118, 133);
 }
 
-.mainmu a,
-.mw a{
-	text-decoration: none;
-	display: block;
-	height:30px;
+.fas{
+	font-size: medium;
 }
 
-	
+
+
+/* resume Section */
+
+#resume{
+	background-image:url("../img/bg-light.jpg");
+	background-size: cover;
+}
+
+
+#resume p {
+
+	font-size: 12px;
+}
+
+
+/*footer*/
+
+.btn{
+	color:white;
+	border-radius: 20px;
+	background-color:rgb(20, 139, 168);
+
+}
+
+footer > .position-fixed {
+	bottom: 5vh;
+	right: 5vh;
+	z-index: 999;
+	position: fixed;
+  }

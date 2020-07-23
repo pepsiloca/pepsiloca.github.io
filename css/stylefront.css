@@ -158,10 +158,9 @@ hr {
 #about {
 	padding: 100px 0;
 	background: #f6f6f6;
-	/* 搶不過 */
 	background-image: url("img/bg.jpg");
-        background-repeat: no-repeat;
-        background-size:cover;
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 
 #about img {
@@ -175,53 +174,10 @@ hr {
 	margin-bottom: 30px;
 	font-size: 12px;
 }
-/* Skills Section */
-#skills {
-	padding: 100px 0;
-	background: #7bc3d1;
-}
-
-#skills hr{
-
-	background: rgba(255,255,255,0.3)
-}
-
-.web{
-	background-color: rgb(255, 255, 255);
-	color: #656c6d;
-	width:80%;
-	padding:5px;
-	height: 150px;
-	/* border-radius: 10%; */
-	text-align: center;
-	box-shadow:1px 1px 2px rgb(41, 139, 156);
-
-}
-.web:hover{
-  box-shadow:1px 1px 15px rgb(33, 118, 133);
-  /* border:5px solid rgb(193, 246, 255); */
-  color:rgb(255, 175, 219);
-  font-weight: 600;
-}
-
-.fas{
-	font-size: medium;
-}
 
 
 
-/* resume Section */
 
-#resume{
-	background-image:url("../img/bg-light.jpg");
-	background-size: cover;
-}
-
-
-#resume p {
-
-	font-size: 12px;
-}
 
 
 /* Portfolio Section */
@@ -230,9 +186,6 @@ hr {
 	background: #7bc3d1;
 }
 
-/* #portfolio .hover-bg{
-	box-shadow:3px 3px 3px #4898a8;
-} */
 
 #portfolio hr {
 	background: rgba(255,255,255,0.3);
@@ -305,24 +258,6 @@ hr {
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
-
-/*footer*/
-
-.btn{
-	color:white;
-	background-color:rgb(20, 139, 168);
-
-}
-
-footer > .position-fixed {
-	bottom: 5vh;
-	right: 5vh;
-	z-index: 999;
-	position: fixed;
-  }
-  
-
-
 
 
 

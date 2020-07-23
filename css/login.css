@@ -1,0 +1,23 @@
+body {
+    background: url("../img/bg.jpg") repeat center center /cover;
+    margin: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.h3 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn {
+    
+    background: rgb(248, 185, 194);
+}
+
+.logbox {
+    height: 300px;
+    width: 400px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 5px gray;
+
+}
