@@ -35,15 +35,15 @@
 
 
 
-/* resume Section */
+/* Experience Section */
 
-#resume{
+#Experience{
 	background-image:url("../img/bg-light.jpg");
 	background-size: cover;
 }
 
 
-#resume p {
+#Experience p {
 
 	font-size: 12px;
 }
