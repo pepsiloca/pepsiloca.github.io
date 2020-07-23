@@ -29,10 +29,6 @@
   transition: all 0.3s;
 }
 
-.web > h5:hover{
-	color:rgb(33, 118, 133);
-}
-
 .fas{
 	font-size: medium;
 }
